@@ -31,7 +31,8 @@ public class Main {
          */
         //1 创建disruptor
         Disruptor<OrderEvent> disruptor=new Disruptor(orderEventFactory,
-                ringBufferSize, Executors.defaultThreadFactory(),
+                ringBufferSize,
+                Executors.defaultThreadFactory(),
                 ProducerType.SINGLE,
                 new YieldingWaitStrategy());
         //2 添加消费者监听

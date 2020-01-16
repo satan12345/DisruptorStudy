@@ -12,13 +12,14 @@ import java.util.concurrent.CountDownLatch;
 public class TradePublisher implements Runnable {
     CountDownLatch countDownLatch;
     Disruptor<Trade> disruptor;
-    int publishCount = 10;
+    int publishCount = 1;
 
     public TradePublisher(CountDownLatch countDownLatch, Disruptor<Trade> disruptor) {
         this.countDownLatch = countDownLatch;
         this.disruptor = disruptor;
     }
 
+    @Override
     public void run() {
         final TradeEventTranslator tradeEventTranslator = new TradeEventTranslator();
         for (int i = 0; i < publishCount; i++) {
@@ -44,6 +45,6 @@ class TradeEventTranslator implements EventTranslator<Trade> {
     }
 
     private void generateTrade(Trade event) {
-        event.setPrice(random.nextDouble());
+        //event.setPrice(random.nextDouble());
     }
 }
