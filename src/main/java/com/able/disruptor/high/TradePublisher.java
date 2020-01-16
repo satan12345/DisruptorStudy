@@ -37,9 +37,9 @@ public class TradePublisher implements Runnable {
 class TradeEventTranslator implements EventTranslator<Trade> {
 
     Random random = new Random();
-
+    @Override
     public void translateTo(Trade event, long sequence) {
-        log.info("sequence= {}", sequence);
+        //log.info("sequence= {}", sequence);
         this.generateTrade(event);
 
     }
