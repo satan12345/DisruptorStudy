@@ -44,11 +44,11 @@ public class Main {
        orderRingBuffer.addGatingSequences(workerPool.getWorkerSequences());
 
        //6 启动workerPool
-       workerPool.start(Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors()));
+       workerPool.start(Executors.newFixedThreadPool(20));
 
         CountDownLatch countDownLatch=new CountDownLatch(1);
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 20; i++) {
             Producer producer=new Producer();
             new Thread(new Runnable() {
                 @Override
@@ -59,9 +59,9 @@ public class Main {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    for (int i1 = 0; i1 < 100; i1++) {
+//                    for (int i1 = 0; i1 < 1; i1++) {
                         producer.sendData(orderRingBuffer);
-                    }
+//                    }
 
                 }
             }).start();

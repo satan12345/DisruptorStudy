@@ -20,7 +20,7 @@ public class Main {
     public static void main(String[] args){
 
         OrderEventFactory orderEventFactory=new OrderEventFactory();
-        int ringBufferSize=1024*1024;
+        int ringBufferSize=4;
 
         /**EventFactory :消息(event)工厂对象
          * ringBufferSize:容器的长度
@@ -48,7 +48,7 @@ public class Main {
 
         OrderEventProducer orderEventProducer=new OrderEventProducer(ringBuffer);
         ByteBuffer buffer=ByteBuffer.allocate(8);
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 5; i++) {
             buffer.putLong(i);
             buffer.flip();
             orderEventProducer.sendData(buffer);

@@ -2,6 +2,7 @@ package com.able.disruptor.multi;
 
 import com.lmax.disruptor.RingBuffer;
 
+import java.util.Random;
 import java.util.UUID;
 
 /**
@@ -14,7 +15,7 @@ public class Producer {
         long seq = orderRingBuffer.next();
         try {
             Order order = orderRingBuffer.get(seq);
-            order.setId(UUID.randomUUID().toString());
+            order.setId(String.valueOf(new Random().nextInt(100)));
         } finally {
 
             orderRingBuffer.publish(seq);
